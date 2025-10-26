@@ -8,7 +8,6 @@ import sqlalchemy
 import osmnx as ox
 from shapely.geometry import box, LineString
 from shapely.ops import substring
-import folium
 
 # Create the Flask app
 def get_db_connection() -> sqlalchemy.engine.base.Engine:
