@@ -226,7 +226,7 @@ def collect_and_save_data():
 
     #type(edges['geometry'])
     # --- Google Distance Matrix API setup ---
-    API_KEY = "AIzaSyDYL84jh1-ewjSuM_d4OwpJgWeStxOJCkw"
+    API_KEY = os.environ.get('MAPS_API_KEY')
     url = "https://maps.googleapis.com/maps/api/distancematrix/json"
 
     # --- Extract start and end coordinates for each edge ---
