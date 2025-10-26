@@ -1,0 +1,8 @@
+pandas
+requests
+numpy
+osmnx
+geopandas
+sqlalchemy
+psycopg2-binary
+shapely
