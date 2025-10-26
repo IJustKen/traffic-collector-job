@@ -279,6 +279,3 @@ def collect_and_save_data():
 
 
     save_to_db(edges_fine)
-
-
-collect_and_save_data()
