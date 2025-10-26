@@ -4,11 +4,15 @@ import requests
 import numpy as np
 import pandas as pd
 import geopandas as gpd
+from flask import Flask
 import sqlalchemy
 import osmnx as ox
 from shapely.geometry import box, LineString
 from shapely.ops import substring
 import folium
+
+# Create the Flask app
+app = Flask(__name__)
 
 def get_db_connection() -> sqlalchemy.engine.base.Engine:
     """
@@ -279,3 +283,7 @@ def collect_and_save_data():
 
 
     save_to_db(edges_fine)
+    
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
