@@ -78,7 +78,7 @@ def get_distance_matrix_batch(origins_list, destinations_list):
     # Format origins and destinations for API
     origins_str = "|".join([f"{lat},{lon}" for lat, lon in origins_list])
     destinations_str = "|".join([f"{lat},{lon}" for lat, lon in destinations_list])
-    
+    API_KEY = os.environ.get('MAPS_API_KEY')
     params = {
         "origins": origins_str,
         "destinations": destinations_str,
