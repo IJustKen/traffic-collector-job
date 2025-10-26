@@ -271,12 +271,15 @@ def collect_and_save_data():
 
     edges_fine["start_point"] = edges_fine.geometry.apply(lambda g: (g.coords[0][1], g.coords[0][0]))  # (lat, lon)
     edges_fine["end_point"]   = edges_fine.geometry.apply(lambda g: (g.coords[-1][1], g.coords[-1][0]))  # (lat, lon)
+    
 
     # Usage:
     edges_fine = update_edges_with_traffic(edges_fine, batch_size=10)
 
     edges_fine['start_point'] = edges_fine['start_point'].astype(str)
     edges_fine['end_point'] = edges_fine['end_point'].astype(str)
+    # Convert geometry column to WKT format for PostgreSQL
+    edges_fine['geometry'] = edges_fine['geometry'].apply(lambda geom: geom.wkt if geom is not None else None)
 
 
     save_to_db(edges_fine)
