@@ -1,1 +1,39 @@
+name: Run Traffic Data Collector
+
+on:
+  schedule:
+    # Runs at minute 0 of every 3rd hour (0, 3, 6, 9, 12, 15, 18, 21)
+    # Times are in UTC
+    - cron: '0 */3 * * *'
+  
+  # This allows you to manually trigger the workflow from GitHub for testing
+  workflow_dispatch:
+
+jobs:
+  collect-traffic-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Download your code from the repository
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python on the runner
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # Step 3: Install your dependencies (from requirements.txt)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Run your Python script
+      - name: Run data collection script
+        run: python main.py
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
 
