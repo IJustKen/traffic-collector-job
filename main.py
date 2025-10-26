@@ -197,7 +197,7 @@ def update_edges_with_traffic(edges_df, batch_size=10):
     # Calculate additional metrics
     edges_df['delay_s'] = edges_df['duration_traffic_s'] - edges_df['duration_s']
     edges_df['congestion_ratio'] = edges_df['duration_traffic_s'] / edges_df['duration_s']
-    
+    edges_df['observed_at'] = pd.Timestamp.now(tz='UTC')
     return edges_df
 
 def collect_and_save_data():
