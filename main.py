@@ -203,14 +203,17 @@ def update_edges_with_traffic(edges_df, batch_size=10):
 def collect_and_save_data():
 
     #lat long
-    north, south = 10.7807, 10.7733
-    east, west = 76.6469, 76.6387
+    # NOT IN USE
+    #north, south = 10.7807, 10.7733
+    #east, west = 76.6469, 76.6387
 
     #download road network graph in your bounding box, had to AI this
 
 
     #This is: (min_lon, min_lat, max_lon, max_lat)
-    bbox_poly = box(76.6387, 10.7733, 76.6469, 10.7807)
+    # bbox_poly = box(76.6387, 10.7733, 76.6469, 10.7807)
+    # Changing to new bounding box for fewer edges
+    bbox_poly = box(77.0487, 28.5866, 77.0515, 28.5977)
 
 
     #we enter the bounding box and it returns all road segments within it (partially or fully) which are
